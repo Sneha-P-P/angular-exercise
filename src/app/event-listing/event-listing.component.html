@@ -1,0 +1,32 @@
+<div class="events-list">
+  <h2>
+    Upcoming events in Bangalore
+  </h2>
+
+  <div class="e-grid">
+    <div *ngFor="let list of eventData" class="card">
+      <img src="{{list.image}}" alt=" {{list.name}}" height="170px" width="100%" srcset="">
+      <div class="event-des">
+        <h5>
+          {{list.name}}
+        </h5>
+        <div class="event-date">
+          <i class="material-icons">
+            access_time
+          </i>
+          <span>{{list.date_of_events}}</span>
+        </div>
+        <span class="event-seats" *ngIf="list.remaining_seats">{{list.remaining_seats}}
+          {{ list.remaining_seats === 1 ? "seat" : "seats"}}
+          available</span>
+        <div class="d-flex justify-content-center  mt-2">
+          <button *ngIf="list.remaining_seats" class="btn btn-book" (click)="gotoBookPage(list.slug, list.id)">Book
+            now</button>
+          <button *ngIf="!list.remaining_seats" class="btn btn-sold">Sold
+            out</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

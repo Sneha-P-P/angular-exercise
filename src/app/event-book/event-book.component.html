@@ -1,0 +1,97 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-sm-6 col-lg-4 p-5 m-auto">
+    <div class=" text-center">
+      <h5 *ngIf='booked'>Ticket booked !</h5>
+      <h1>
+        {{event?.name}}
+      </h1>
+      <h6>
+        * {{remaining_seats}} seats are available
+      </h6>
+    </div>
+    <form [formGroup]="eventBookingForm" [ngClass]="{'invalid-form': invalid}">
+      <div class="form-group">
+        <label for="user">Username*</label>
+        <input type="text" name="username" id="user" formControlName="username" placeholder="Username" />
+        <div class="text-danger" *ngIf="
+            eventBookingForm.get('username').touched
+          ">
+          <span *ngIf="
+            eventBookingForm.get('username').hasError('required')">
+            Please enter your name
+          </span>
+          <span *ngIf=" eventBookingForm.get('username').hasError('pattern')">
+            Only letters and spaces are
+            allowed
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email*</label>
+        <input type="email" name="email" id="email" formControlName="email" placeholder="Email*" />
+
+        <div class="text-danger" *ngIf="eventBookingForm.get('email').touched">
+          <span *ngIf="eventBookingForm.get('email').hasError('required')">
+            Please enter your email</span>
+          <span *ngIf="eventBookingForm.get('email').hasError('pattern')">
+            Invalid email
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone"> Phone </label>
+        <input type="tel" name="phone" id="phone" maxlength="10" minlength="10" formControlName="phone"
+          placeholder="1234567890" />
+        <span class="text-danger" *ngIf="eventBookingForm.get('phone').touched && (eventBookingForm.get('phone').hasError('maxlength') ||
+          eventBookingForm.get('phone').hasError('minlength')) || eventBookingForm.get('phone').hasError('pattern')">
+          Please enter 10 digit phone number
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="seats">Number of seats</label>
+        <select name="no_of_seats" id="seats" formControlName="no_of_seats" (change)="AddAttendee()">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <div class="text-danger"
+          *ngIf="eventBookingForm.get('no_of_seats').touched && eventBookingForm.get('no_of_seats').hasError('notAvailable')">
+          Number of seats selected is
+          more than available seats
+        </div>
+      </div>
+      <ng-container
+        *ngIf="eventBookingForm.get('no_of_seats').value != 1 && !eventBookingForm.get('no_of_seats').hasError('notAvailable')">
+        <label class="sub-heading">Name of other attendees</label>
+        <div formArrayName="name_of_other_attendee">
+          <div *ngFor="
+            let attendee of eventBookingForm.get('name_of_other_attendee')
+              .controls;
+            let i = index
+          ">
+            <div class="form-group" [formGroupName]="i">
+              <label>Name of Attendee {{i + 2}}* </label>
+              <input placeholder="Attendee" formControlName="attendee" />
+              <div class="text-danger" *ngIf="
+            (eventBookingForm.get('name_of_other_attendee').controls[i]).invalid &&
+            eventBookingForm.get('name_of_other_attendee').controls[i].touched
+          ">
+                Please enter the name of Attendee {{i +2}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="form-group mt-4 d-flex justify-content-center">
+        <button class="btn mr-2" (click)="cancelSubmission()">Cancel</button>
+        <button class="btn btn-book ml-2" (click)="submitForm()" [disabled]="remaining_seats === 0">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

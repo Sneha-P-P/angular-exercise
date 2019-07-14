@@ -1,0 +1,39 @@
+{
+  "1": {
+    "id": 123,
+    "name": "Story teller meetup",
+    "image": "../../assets/images/story-teller.jpg",
+    "date_of_events": "Fri, 12 July",
+    "remaining_seats": 1,
+    "total_seats": 12,
+    "slug": "story-12-07-2019"
+  },
+  "2": {
+    "id": 124,
+    "name": "Chennai Weekend Trips",
+    "image": "../../assets/images/trip-chennai.jpeg",
+    "date_of_events": "Sun, 21 July",
+    "remaining_seats": 0,
+    "total_seats": 10,
+    "slug": "trip-21-07-2019"
+  },
+  "3": {
+    "id": 125,
+    "name": "Italian meetup",
+    "image": "../../assets/images/italian-meetup.png",
+    "date_of_events": "Sun, 14 July",
+    "remaining_seats": 10,
+    "total_seats": 22,
+    "slug": "italian-14-07-2019"
+  },
+  "4": {
+    "id": 126,
+    "name": "Tech Container",
+    "image": "../../assets/images/tech-container.jpeg",
+    "date_of_events": "Thu, 1 August",
+    "remaining_seats": 5,
+    "total_seats": 20,
+    "slug": "techc-01-08-2019"
+  }
+
+}

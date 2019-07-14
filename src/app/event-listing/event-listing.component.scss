@@ -1,0 +1,57 @@
+.events-list {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 2rem;
+
+  // background-color: #a3b9f782;
+  h2 {
+    font-weight: 600;
+  }
+}
+
+.e-grid {
+  display: grid;
+  grid-gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 270px));
+  justify-content: center;
+  margin-top: 2rem;
+
+  .card {
+    text-align: center;
+
+    .event-des {
+      padding: 1rem;
+      text-align: start;
+
+      h5 {
+        font-weight: 600;
+        margin-bottom: 3px;
+        font-size: 17px;
+      }
+    }
+  }
+
+  .event-date {
+    display: flex;
+    align-items: center;
+    color: #1484c5;
+    font-weight: 600;
+    font-size: 14px;
+
+    .material-icons {
+      font-size: 16px;
+      margin-right: 4px;
+    }
+
+    span {
+      // padding-bottom: 10px;
+    }
+  }
+
+  .event-seats {
+    font-size: 13px;
+    color: gray;
+    font-weight: 600;
+  }
+
+}
