@@ -42,10 +42,6 @@
       font-size: 16px;
       margin-right: 4px;
     }
-
-    span {
-      // padding-bottom: 10px;
-    }
   }
 
   .event-seats {
@@ -54,4 +50,26 @@
     font-weight: 600;
   }
 
+}
+
+table {
+  margin: 0 auto;
+  width: 90%;
+
+  @media(max-width: 568px) {
+    width: 96%;
+  }
+
+  thead {
+    font-weight: 600;
+  }
+
+  td {
+    vertical-align: middle;
+
+    button {
+      display: flex;
+      margin: auto;
+    }
+  }
 }

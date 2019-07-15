@@ -53,13 +53,14 @@ export class EventBookComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
       phone: ['', Validators.pattern(this.phonePattern)],
       no_of_seats: ['1'],
-      name_of_other_attendee: this.formbuilder.array([])
+      name_of_other_attendee: this.formbuilder.array([]),
+      availableSeats: ['']
     });
   }
 
   /**
    * @INFO
-   * Validates for the nukber of seats
+   * Validates for the number of seats
    * @param formControl Form control: no_of_seats
    */
   availableSeat(formControl: FormControl) {
@@ -110,7 +111,7 @@ export class EventBookComponent implements OnInit {
       this.remainingSeats = this.event.remaining_seats;
       this.eventBookingForm
         .get('no_of_seats')
-        .setValidators(this.availableSeat);
+        .setValidators(this.availableSeat.bind(this));
     });
   }
 
@@ -127,6 +128,7 @@ export class EventBookComponent implements OnInit {
       this.remainingSeats--;
       this.buildForm();
       this.booked = true;
+      this.invalid = false;
     } else {
       this.invalid = true;
       Object.keys(this.eventBookingForm.controls).forEach(field => {

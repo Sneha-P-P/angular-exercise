@@ -4,7 +4,7 @@
       Angular Events App
     </h2>
     <div class="search-bar">
-      <input type="text" name="search" placeholder="Search events... " id="">
+      <input #value type="text" name="search" placeholder="Search events... " id="search" (keyup)="searchData(value)">
     </div>
   </nav>
 

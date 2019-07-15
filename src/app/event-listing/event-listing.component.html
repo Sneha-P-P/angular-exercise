@@ -3,7 +3,55 @@
     Upcoming events in Bangalore
   </h2>
 
-  <div class="e-grid">
+  <div class="px-5 py-3 mx-4 d-flex justify-content-start">
+    <div (click)="toggle()" *ngIf="!isListView">
+      <i class="material-icons">
+        view_list
+      </i>
+    </div>
+    <div (click)="toggle()" *ngIf="isListView">
+      <i class="material-icons">
+        view_module
+      </i>
+    </div>
+  </div>
+
+  <table *ngIf="isListView" class="table table-bordered">
+    <thead>
+      <td>Event</td>
+      <td>Image</td>
+      <td>Date</td>
+      <td>Available seats</td>
+      <td></td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let list of eventData">
+        <td>
+          {{list.name}}
+        </td>
+        <td>
+          <img src="{{list.image}}" alt=" {{list.name}}" height="70px" width="100px" srcset="">
+        </td>
+        <td>
+          {{list.date_of_events}}
+        </td>
+        <td>
+          {{list.remaining_seats}}
+        </td>
+        <td>
+          <button *ngIf="list.remaining_seats" class="btn btn-book" (click)="gotoBookPage(list.slug, list.id)">Book
+            now</button>
+          <button *ngIf="!list.remaining_seats" class="btn btn-sold">Sold
+            out</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+
+  <div *ngIf="!isListView" class="e-grid">
     <div *ngFor="let list of eventData" class="card">
       <img src="{{list.image}}" alt=" {{list.name}}" height="170px" width="100%" srcset="">
       <div class="event-des">

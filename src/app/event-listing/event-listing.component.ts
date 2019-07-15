@@ -9,11 +9,23 @@ import { Router } from '@angular/router';
 })
 export class EventListingComponent implements OnInit {
   eventData = [];
+  searched: boolean;
+  isListView: boolean = false;
 
   constructor(private appService: AppService, private route: Router) {}
 
   ngOnInit() {
     this.subscribeData();
+    this.appService.searching.subscribe(data => {
+      this.searched = data;
+      if (this.searched) {
+        this.appService.searchResults.subscribe(data => {
+          this.eventData = data;
+        });
+      } else {
+        this.subscribeData();
+      }
+    });
   }
 
   /**
@@ -32,5 +44,13 @@ export class EventListingComponent implements OnInit {
    */
   gotoBookPage(slug, id) {
     this.route.navigateByUrl(`/book/${id}/${slug}`);
+  }
+
+  /**
+   * @INFO
+   * toggle function to show list/grid view
+   */
+  toggle() {
+    this.isListView = !this.isListView;
   }
 }
